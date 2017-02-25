@@ -253,7 +253,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.meggrasse.---Apple-Music";
+				PRODUCT_BUNDLE_IDENTIFIER = com.meggrasse.Upgrade;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Meg/Documents/-> Apple Music/-> Apple Music/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -273,7 +273,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.meggrasse.---Apple-Music";
+				PRODUCT_BUNDLE_IDENTIFIER = com.meggrasse.Upgrade;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Meg/Documents/-> Apple Music/-> Apple Music/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

@@ -32,17 +32,22 @@ class ViewController: UIViewController {
         for playlist in playlistList.items {
             snapshotForPlaylist(playlist: playlist as! SPTPartialPlaylist, completionHandler: {(snapshot) in
                 let playlistData = MPMediaPlaylistCreationMetadata.init(name: (snapshot?.name)!)
+                //if getPlaylist(with:creationMetadata:completionHandler) can't find a playlist with the given UUID, it creates a new one
                 MPMediaLibrary.default().getPlaylist(with: UUID(), creationMetadata: playlistData, completionHandler: {(playlist, error) in
                     if (error != nil) {
                         print(error!)
+                    } else {
+                        print("Successfully initialized playlist " + (playlist?.name)!)
                     }
 
                     for spotifyTrack in (snapshot?.firstTrackPage.items)! {
                         if let spotifyTrack = spotifyTrack as? SPTPlaylistTrack {
-                            findAppleMusicTrackIdForSpotifyTrack(track: spotifyTrack, completitionHandler: {(appleMusicId) in
+                            self.findAppleMusicTrackIdForSpotifyTrack(track: spotifyTrack, completionHandler: {(appleMusicId) in
                                 playlist?.addItem(withProductID: appleMusicId!, completionHandler: {(error) in
                                     if (error != nil) {
                                         print(error!)
+                                    } else {
+                                        print("Successfully added" + appleMusicId! + "to playlist" + (playlist?.name)!)
                                     }
                                     
                                 })
@@ -55,19 +60,18 @@ class ViewController: UIViewController {
     }
     
     func snapshotForPlaylist(playlist: SPTPartialPlaylist, completionHandler: @escaping (SPTPlaylistSnapshot?) -> Void) {
-            SPTPlaylistSnapshot.playlist(withURI: playlist.uri, accessToken: auth?.session.accessToken, callback: { (error, snapshot) in
-                if (error != nil) {
-                    print(error!)
-                }
-                
-                if let snapshot = snapshot as? SPTPlaylistSnapshot {
-                    completionHandler(snapshot)
-                }
-            })
-        }
+        SPTPlaylistSnapshot.playlist(withURI: playlist.uri, accessToken: auth?.session.accessToken, callback: { (error, snapshot) in
+            if (error != nil) {
+                print(error!)
+            }
+            
+            if let snapshot = snapshot as? SPTPlaylistSnapshot {
+                completionHandler(snapshot)
+            }
+        })
     }
 
-    func findAppleMusicTrackIdForSpotifyTrack(track: SPTPlaylistTrack, completitionHandler: @escaping (String?) -> Void) {
+    func findAppleMusicTrackIdForSpotifyTrack(track: SPTPlaylistTrack, completionHandler: @escaping (String?) -> Void) {
         var queryTerms = track.name.components(separatedBy: " ") //Add more later
         var parameters = ""
         
@@ -89,27 +93,29 @@ class ViewController: UIViewController {
             
             let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
                 if (error != nil) {
-                    print(error!)
-                } else {
-                //should check status code here
-                    do {
-                        var json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
-                        if let results = json["results"] as? [[String:AnyObject]] {
-                            if (results.count > 0) {
-                                if let trackId = results[0]["trackId"] as? NSNumber {
-                                    completitionHandler(trackId.stringValue)
-                                }
+                    if let httpResponse = response as? HTTPURLResponse {
+                        print("status code error: \(httpResponse.statusCode)")
+                    } else {
+                        print(error!)
+                    }
+                }
+                do {
+                    var json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
+                    if let results = json["results"] as? [[String:AnyObject]] {
+                        if (results.count > 0) {
+                            if let trackId = results[0]["trackId"] as? NSNumber {
+                                completionHandler(trackId.stringValue)
                             }
                         }
                     }
-                    catch {
-                        print ("Error")
-                    }
+                }
+                catch {
+                    print("Error")
                 }
             })
-            
             task.resume()
         }
     }
+}
 
 
