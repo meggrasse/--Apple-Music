@@ -9,9 +9,6 @@
 import UIKit
 import MediaPlayer
 
-// Need to find where files are being opened - maybe completion handler so you can only search for one file at a time
-// Need to find what causes catch to be triggered (maybe can't find a file)
-
 class ViewController: UIViewController {
     
     var auth = (UIApplication.shared.delegate as! AppDelegate).auth
@@ -35,7 +32,7 @@ class ViewController: UIViewController {
         for playlist in playlistList.items {
             snapshotForPlaylist(playlist: playlist as! SPTPartialPlaylist, completionHandler: {(snapshot) in
                 let playlistData = MPMediaPlaylistCreationMetadata.init(name: (snapshot?.name)!)
-                //if getPlaylist(with:creationMetadata:completionHandler) can't find a playlist with the given UUID, it creates a new one
+                // if getPlaylist(with:creationMetadata:completionHandler:) can't find a playlist with the given UUID, it creates a new one
                 MPMediaLibrary.default().getPlaylist(with: UUID(), creationMetadata: playlistData, completionHandler: {(playlist, error) in
                     if (error != nil) {
                         print(error!)
@@ -91,8 +88,8 @@ class ViewController: UIViewController {
         let url = NSURL(string: urlString)
         if (url != nil) {
             let request = URLRequest.init(url: url as! URL)
-            let config = URLSessionConfiguration.default
-            let session = URLSession(configuration: config)
+            // using a shared session ensures we aren't creating a new session for each request
+            let session = URLSession.shared
             
             let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
                 if (error != nil) {
