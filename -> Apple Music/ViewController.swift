@@ -9,6 +9,9 @@
 import UIKit
 import MediaPlayer
 
+// Need to find where files are being opened - maybe completion handler so you can only search for one file at a time
+// Need to find what causes catch to be triggered (maybe can't find a file)
+
 class ViewController: UIViewController {
     
     var auth = (UIApplication.shared.delegate as! AppDelegate).auth
@@ -47,7 +50,7 @@ class ViewController: UIViewController {
                                     if (error != nil) {
                                         print(error!)
                                     } else {
-                                        print("Successfully added" + appleMusicId! + "to playlist" + (playlist?.name)!)
+                                        print("Successfully added " + appleMusicId! + " to playlist " + (playlist?.name)!)
                                     }
                                     
                                 })
@@ -100,13 +103,17 @@ class ViewController: UIViewController {
                     }
                 }
                 do {
-                    var json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
-                    if let results = json["results"] as? [[String:AnyObject]] {
-                        if (results.count > 0) {
-                            if let trackId = results[0]["trackId"] as? NSNumber {
-                                completionHandler(trackId.stringValue)
+                    if let data = data as Data! {
+                        var json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:AnyObject]
+                        if let results = json["results"] as? [[String:AnyObject]] {
+                            if (results.count > 0) {
+                                if let trackId = results[0]["trackId"] as? NSNumber {
+                                    completionHandler(trackId.stringValue)
+                                }
                             }
                         }
+                    } else {
+                        print("error should be \(error)")
                     }
                 }
                 catch {
@@ -115,6 +122,17 @@ class ViewController: UIViewController {
             })
             task.resume()
         }
+    }
+    
+    func countFileDescriptors() -> Int {
+        var inUseDescCount = 0;
+        let descCount = getdtablesize();
+        for var descIndex in 0..<descCount {
+            if ( fcntl(descIndex, F_GETFL) >= 0 ) {
+                inUseDescCount += 1;
+            }  
+        }
+        return inUseDescCount
     }
 }
 
