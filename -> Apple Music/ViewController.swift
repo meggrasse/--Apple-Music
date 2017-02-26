@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     
     var auth = (UIApplication.shared.delegate as! AppDelegate).auth
     
+    let serialQueue = DispatchQueue(label: "iTunesRequests")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -93,11 +95,7 @@ class ViewController: UIViewController {
             
             let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
                 if (error != nil) {
-                    if let httpResponse = response as? HTTPURLResponse {
-                        print("status code error: \(httpResponse.statusCode)")
-                    } else {
-                        print(error!)
-                    }
+                    print(error!)
                 }
                 do {
                     if let data = data as Data! {
@@ -110,26 +108,27 @@ class ViewController: UIViewController {
                             }
                         }
                     } else {
-                        print("error should be \(error)")
+                        print(data as Any)
                     }
                 }
                 catch {
-                    print("Error")
+                    if let httpResponse = response as? HTTPURLResponse {
+                        print(httpResponse.statusCode)
+                    } else {
+                        print(response as Any)
+                    }
                 }
+            
             })
-            task.resume()
+            // I need to send max 20 req/min
+            // I really want to use asyncAfter(wallDeadline...) for this
+            self.serialQueue.sync {
+                DispatchQueue.main.async {
+                    sleep(3)
+                    task.resume()
+                }
+            }
         }
-    }
-    
-    func countFileDescriptors() -> Int {
-        var inUseDescCount = 0;
-        let descCount = getdtablesize();
-        for var descIndex in 0..<descCount {
-            if ( fcntl(descIndex, F_GETFL) >= 0 ) {
-                inUseDescCount += 1;
-            }  
-        }
-        return inUseDescCount
     }
 }
 
