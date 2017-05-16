@@ -74,7 +74,22 @@ class ViewController: UIViewController {
     }
 
     func findAppleMusicTrackIdForSpotifyTrack(track: SPTPlaylistTrack, completionHandler: @escaping (String?) -> Void) {
-        var queryTerms = track.name.components(separatedBy: " ") //Add more later
+//        var queryTerms = track.name.components(separatedBy: " ").append(track.artist.components(seperatedBy: " ")).append(track.album.components(seperatedBy: " "))
+
+        var queryTerms = track.name.components(separatedBy: " ")
+
+        // Can I map here?
+        for artist in track.artists {
+            // Check this cast
+            let partialArtist = artist as! SPTPartialArtist
+            queryTerms.append(contentsOf: partialArtist.name.components(separatedBy: " "));
+        }
+
+        queryTerms.append(contentsOf: track.album.name.components(separatedBy: " "));
+
+        print(queryTerms)
+
+        // I can definitely map here
         var parameters = ""
         
         for i in 0...(queryTerms.count - 1) {
@@ -86,10 +101,14 @@ class ViewController: UIViewController {
             parameters += queryTerm
         }
         
-        let urlString = "https://itunes.apple.com/search?term=" + parameters + "&limit=1"
+
+        // Add in explicit
+        // Can I make a dictionary with the different attributes?
+        let urlString = "https://itunes.apple.com/search?term=" + parameters + "&media=music&entity=song&limit=1"
+        print(urlString)
         let url = NSURL(string: urlString)
         if (url != nil) {
-            let request = URLRequest.init(url: url as! URL)
+            let request = URLRequest.init(url: url! as URL)
             // using a shared session ensures we aren't creating a new session for each request
             let session = URLSession.shared
             

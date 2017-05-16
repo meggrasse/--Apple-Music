@@ -255,7 +255,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.meggrasse.Upgrade;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Meg/Documents/-> Apple Music/-> Apple Music/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Meg/Upgrade/-> Apple Music/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -275,7 +275,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.meggrasse.Upgrade;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Meg/Documents/-> Apple Music/-> Apple Music/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Meg/Upgrade/-> Apple Music/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
