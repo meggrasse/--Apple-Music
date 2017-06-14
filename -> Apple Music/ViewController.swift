@@ -78,11 +78,10 @@ class ViewController: UIViewController {
         let artistTerms = track.artists.map { ($0 as! SPTPartialArtist).name.components(separatedBy: " ") }.joined()
         let albumTerms = track.album.name.components(separatedBy: " ")
         let queryTerms = trackTerms + artistTerms + albumTerms
-        let parameters = queryTerms.joined(separator: "+")
+        let explicit = track.flaggedExplicit ? "Yes" : "No"
 
-        // Add in explicit
         // Can I make a dictionary with the different attributes?
-        let urlString = "https://itunes.apple.com/search?term=" + parameters + "&media=music&entity=song&limit=1"
+        let urlString = "https://itunes.apple.com/search?term=" + queryTerms.joined(separator: "+") + "&media=music&entity=song&explicit=" + explicit + "&limit=1"
         print(urlString)
         let url = NSURL(string: urlString)
         if (url != nil) {
