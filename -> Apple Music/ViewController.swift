@@ -12,7 +12,6 @@ import MediaPlayer
 class ViewController: UIViewController {
     
     var auth = (UIApplication.shared.delegate as! AppDelegate).auth
-    
     let serialQueue = DispatchQueue(label: "iTunesRequests")
     
     override func viewDidLoad() {
@@ -56,6 +55,7 @@ class ViewController: UIViewController {
                             })
                         }
                     }
+
                 })
             })
         }
@@ -66,7 +66,6 @@ class ViewController: UIViewController {
             if (error != nil) {
                 print(error!)
             }
-            
             if let snapshot = snapshot as? SPTPlaylistSnapshot {
                 completionHandler(snapshot)
             }
@@ -74,33 +73,12 @@ class ViewController: UIViewController {
     }
 
     func findAppleMusicTrackIdForSpotifyTrack(track: SPTPlaylistTrack, completionHandler: @escaping (String?) -> Void) {
-//        var queryTerms = track.name.components(separatedBy: " ").append(track.artist.components(seperatedBy: " ")).append(track.album.components(seperatedBy: " "))
-
-        var queryTerms = track.name.components(separatedBy: " ")
-
-        // Can I map here?
-        for artist in track.artists {
-            // Check this cast
-            let partialArtist = artist as! SPTPartialArtist
-            queryTerms.append(contentsOf: partialArtist.name.components(separatedBy: " "));
-        }
-
-        queryTerms.append(contentsOf: track.album.name.components(separatedBy: " "));
-
-        print(queryTerms)
-
-        // I can definitely map here
-        var parameters = ""
-        
-        for i in 0...(queryTerms.count - 1) {
-            var queryTerm = queryTerms[i]
-            if (i != 0) {
-                queryTerm = "+" + queryTerm
-            }
-            
-            parameters += queryTerm
-        }
-        
+        // bleh, compiler can't tell these are all arrays unless stored as local vars
+        let trackTerms = track.name.components(separatedBy: " ")
+        let artistTerms = track.artists.map { ($0 as! SPTPartialArtist).name.components(separatedBy: " ") }.joined()
+        let albumTerms = track.album.name.components(separatedBy: " ")
+        let queryTerms = trackTerms + artistTerms + albumTerms
+        let parameters = queryTerms.joined(separator: "+")
 
         // Add in explicit
         // Can I make a dictionary with the different attributes?
