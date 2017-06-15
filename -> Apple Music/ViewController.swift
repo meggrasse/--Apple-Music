@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     
     var auth = (UIApplication.shared.delegate as! AppDelegate).auth
     let serialQueue = DispatchQueue(label: "iTunesRequests")
+    let errorLog = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,22 @@ class ViewController: UIViewController {
                 print("Need authorization")
             }
         }
+
+        UIView.animate(withDuration: 0.1, delay: 0.0, options: [UIViewAnimationOptions.repeat], animations: {
+            self.view.backgroundColor = UIColor(red:0.78, green:0.27, blue:0.99, alpha:1.0)
+            self.view.backgroundColor = UIColor(red:0.35, green:0.34, blue:0.84, alpha:1.0)
+        }, completion: nil)
+        
+        errorLog.frame.size = CGSize(width: self.view.bounds.size.width * 3/4, height: self.view.bounds.size.height * 3/4)
+        errorLog.center = self.view.center
+        errorLog.numberOfLines = 0
+        errorLog.textAlignment = .center
+        errorLog.lineBreakMode = .byWordWrapping
+        errorLog.textColor = UIColor.white
+        errorLog.font = UIFont.boldSystemFont(ofSize: 16)
+        errorLog.text = "Apple Music couldn't find the following tracks:"
+        self.view.addSubview(errorLog)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,6 +107,7 @@ class ViewController: UIViewController {
                                 }
                             } else {
                                 let artists = spotifyTrack.artists.map { ($0 as! SPTPartialArtist).name }.joined(separator: " & ")
+                                self.errorLog.text = self.errorLog.text! + "\n\n" + spotifyTrack.name + " by " + artists
                                 print("Couldn't find " + spotifyTrack.name + " by " + artists + " on Apple Music")
                                 print(URL?.absoluteString! as Any)
                             }

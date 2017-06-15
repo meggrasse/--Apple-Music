@@ -12,6 +12,7 @@
 		9448629A1E2D687000B817A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944862991E2D687000B817A0 /* ViewController.swift */; };
 		944E921A1E2D4ADE009B7ABE /* SpotifyMetadata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 944E92191E2D4ADE009B7ABE /* SpotifyMetadata.framework */; };
 		94A5DC1B1EF22F1500AA2F87 /* ___Apple_MusicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A5DC1A1EF22F1500AA2F87 /* ___Apple_MusicTests.swift */; };
+		94A5DC251EF23FF700AA2F87 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A5DC241EF23FF700AA2F87 /* Default-568h@2x.png */; };
 		94A92B6E1E2CA8D60065FAFD /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A92B6D1E2CA8D60065FAFD /* SpotifyAuthentication.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		94A5DC181EF22F1500AA2F87 /* -> Apple MusicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "-> Apple MusicTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A5DC1A1EF22F1500AA2F87 /* ___Apple_MusicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "___Apple_MusicTests.swift"; sourceTree = "<group>"; };
 		94A5DC1C1EF22F1500AA2F87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94A5DC241EF23FF700AA2F87 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		94A92B6C1E2CA8B80065FAFD /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		94A92B6D1E2CA8D60065FAFD /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAuthentication.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,6 +65,7 @@
 		9434870D1E2C8EDA00700D5F = {
 			isa = PBXGroup;
 			children = (
+				94A5DC241EF23FF700AA2F87 /* Default-568h@2x.png */,
 				944E92161E2D4808009B7ABE /* Config.h */,
 				943487181E2C8EDB00700D5F /* -> Apple Music */,
 				94A5DC191EF22F1500AA2F87 /* -> Apple MusicTests */,
@@ -188,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				943487211E2C8EDB00700D5F /* Assets.xcassets in Resources */,
+				94A5DC251EF23FF700AA2F87 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +424,7 @@
 				94A5DC201EF22F1500AA2F87 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
