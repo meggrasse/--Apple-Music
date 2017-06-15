@@ -145,14 +145,8 @@ class ViewController: UIViewController {
         let explicit = track.flaggedExplicit ? "Yes" : "No"
         
         // Can I make a dictionary with the different attributes?
-        let urlString = "https://itunes.apple.com/search?term=" + queryTerms.joined(separator: "+") + "&media=music&entity=song&explicit=" + explicit + "&limit=1"
-        let url = NSURL(string: urlString)
-        if (url != nil) {
-            return url
-        } else {
-            print(urlString)
-            return nil
-        }
+        let urlString = "https://itunes.apple.com/search?term=" + queryTerms.joined(separator: "+") + "&media=music&entity=song&explicit=" + explicit + "&limit=1".addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlPathAllowed)!
+        return NSURL(string: urlString)
     }
 }
 
