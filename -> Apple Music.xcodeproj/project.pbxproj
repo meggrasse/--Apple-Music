@@ -11,8 +11,19 @@
 		943487211E2C8EDB00700D5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 943487201E2C8EDB00700D5F /* Assets.xcassets */; };
 		9448629A1E2D687000B817A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944862991E2D687000B817A0 /* ViewController.swift */; };
 		944E921A1E2D4ADE009B7ABE /* SpotifyMetadata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 944E92191E2D4ADE009B7ABE /* SpotifyMetadata.framework */; };
+		94A5DC1B1EF22F1500AA2F87 /* ___Apple_MusicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A5DC1A1EF22F1500AA2F87 /* ___Apple_MusicTests.swift */; };
 		94A92B6E1E2CA8D60065FAFD /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A92B6D1E2CA8D60065FAFD /* SpotifyAuthentication.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		94A5DC1D1EF22F1500AA2F87 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9434870E1E2C8EDA00700D5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 943487151E2C8EDA00700D5F;
+			remoteInfo = "-> Apple Music";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		943487161E2C8EDB00700D5F /* -> Apple Music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "-> Apple Music.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,6 +33,9 @@
 		944862991E2D687000B817A0 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		944E92161E2D4808009B7ABE /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		944E92191E2D4ADE009B7ABE /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyMetadata.framework; sourceTree = "<group>"; };
+		94A5DC181EF22F1500AA2F87 /* -> Apple MusicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "-> Apple MusicTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		94A5DC1A1EF22F1500AA2F87 /* ___Apple_MusicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "___Apple_MusicTests.swift"; sourceTree = "<group>"; };
+		94A5DC1C1EF22F1500AA2F87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94A92B6C1E2CA8B80065FAFD /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		94A92B6D1E2CA8D60065FAFD /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAuthentication.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -36,6 +50,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		94A5DC151EF22F1500AA2F87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -44,6 +65,7 @@
 			children = (
 				944E92161E2D4808009B7ABE /* Config.h */,
 				943487181E2C8EDB00700D5F /* -> Apple Music */,
+				94A5DC191EF22F1500AA2F87 /* -> Apple MusicTests */,
 				943487171E2C8EDB00700D5F /* Products */,
 				944E92191E2D4ADE009B7ABE /* SpotifyMetadata.framework */,
 				94A92B6D1E2CA8D60065FAFD /* SpotifyAuthentication.framework */,
@@ -54,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				943487161E2C8EDB00700D5F /* -> Apple Music.app */,
+				94A5DC181EF22F1500AA2F87 /* -> Apple MusicTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -68,6 +91,15 @@
 				94A92B6C1E2CA8B80065FAFD /* Bridging-Header.h */,
 			);
 			path = "-> Apple Music";
+			sourceTree = "<group>";
+		};
+		94A5DC191EF22F1500AA2F87 /* -> Apple MusicTests */ = {
+			isa = PBXGroup;
+			children = (
+				94A5DC1A1EF22F1500AA2F87 /* ___Apple_MusicTests.swift */,
+				94A5DC1C1EF22F1500AA2F87 /* Info.plist */,
+			);
+			path = "-> Apple MusicTests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -90,13 +122,31 @@
 			productReference = 943487161E2C8EDB00700D5F /* -> Apple Music.app */;
 			productType = "com.apple.product-type.application";
 		};
+		94A5DC171EF22F1500AA2F87 /* -> Apple MusicTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94A5DC211EF22F1500AA2F87 /* Build configuration list for PBXNativeTarget "-> Apple MusicTests" */;
+			buildPhases = (
+				94A5DC141EF22F1500AA2F87 /* Sources */,
+				94A5DC151EF22F1500AA2F87 /* Frameworks */,
+				94A5DC161EF22F1500AA2F87 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				94A5DC1E1EF22F1500AA2F87 /* PBXTargetDependency */,
+			);
+			name = "-> Apple MusicTests";
+			productName = "-> Apple MusicTests";
+			productReference = 94A5DC181EF22F1500AA2F87 /* -> Apple MusicTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		9434870E1E2C8EDA00700D5F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Meg Grasse";
 				TargetAttributes = {
@@ -104,6 +154,12 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = QR3YW3B828;
 						ProvisioningStyle = Automatic;
+					};
+					94A5DC171EF22F1500AA2F87 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = QR3YW3B828;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 943487151E2C8EDA00700D5F;
 					};
 				};
 			};
@@ -121,6 +177,7 @@
 			projectRoot = "";
 			targets = (
 				943487151E2C8EDA00700D5F /* -> Apple Music */,
+				94A5DC171EF22F1500AA2F87 /* -> Apple MusicTests */,
 			);
 		};
 /* End PBXProject section */
@@ -131,6 +188,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				943487211E2C8EDB00700D5F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94A5DC161EF22F1500AA2F87 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,7 +210,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		94A5DC141EF22F1500AA2F87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94A5DC1B1EF22F1500AA2F87 /* ___Apple_MusicTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		94A5DC1E1EF22F1500AA2F87 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 943487151E2C8EDA00700D5F /* -> Apple Music */;
+			targetProxy = 94A5DC1D1EF22F1500AA2F87 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		943487261E2C8EDB00700D5F /* Debug */ = {
@@ -280,6 +360,38 @@
 			};
 			name = Release;
 		};
+		94A5DC1F1EF22F1500AA2F87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = QR3YW3B828;
+				INFOPLIST_FILE = "-> Apple MusicTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.meggrasse.---Apple-MusicTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/-> Apple Music.app/-> Apple Music";
+			};
+			name = Debug;
+		};
+		94A5DC201EF22F1500AA2F87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = QR3YW3B828;
+				INFOPLIST_FILE = "-> Apple MusicTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.meggrasse.---Apple-MusicTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/-> Apple Music.app/-> Apple Music";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -300,6 +412,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		94A5DC211EF22F1500AA2F87 /* Build configuration list for PBXNativeTarget "-> Apple MusicTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94A5DC1F1EF22F1500AA2F87 /* Debug */,
+				94A5DC201EF22F1500AA2F87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

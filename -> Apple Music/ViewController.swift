@@ -29,63 +29,50 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func createAppleMusicPlaylistForSpotifyPlaylistList(playlistList: SPTPlaylistList) {
-        for playlist in playlistList.items {
-            snapshotForPlaylist(playlist: playlist as! SPTPartialPlaylist, completionHandler: {(snapshot) in
-                let playlistData = MPMediaPlaylistCreationMetadata.init(name: (snapshot?.name)!)
-                // if getPlaylist(with:creationMetadata:completionHandler:) can't find a playlist with the given UUID, it creates a new one
-                MPMediaLibrary.default().getPlaylist(with: UUID(), creationMetadata: playlistData, completionHandler: {(playlist, error) in
-                    if (error != nil) {
-                        print(error!)
-                    } else {
-                        print("Successfully initialized playlist " + (playlist?.name)!)
-                    }
-
+    func createAppleMusicPlaylistsFromSpotify(playlistList: SPTPlaylistList) {
+        for spotifyPlaylist in playlistList.items {
+                self.initAppleMusicPlaylists(playlist: spotifyPlaylist as! SPTPartialPlaylist, completionHandler: {(appleMusicPlaylist, snapshot) in
                     for spotifyTrack in (snapshot?.firstTrackPage.items)! {
                         if let spotifyTrack = spotifyTrack as? SPTPlaylistTrack {
-                            self.findAppleMusicTrackIdForSpotifyTrack(track: spotifyTrack, completionHandler: {(appleMusicId) in
-                                playlist?.addItem(withProductID: appleMusicId!, completionHandler: {(error) in
+                            self.trackForTrack(spotifyTrack: spotifyTrack, completionHandler: {(appleMusicId) in
+                                appleMusicPlaylist?.addItem(withProductID: appleMusicId!, completionHandler: {(error) in
                                     if (error != nil) {
                                         print(error!)
                                     } else {
-                                        print("Successfully added " + appleMusicId! + " to playlist " + (playlist?.name)!)
+    //                                    print("Successfully added " + appleMusicId! + " to playlist " + (playlist?.name)!)
                                     }
-                                    
                                 })
                             })
                         }
                     }
-
                 })
-            })
         }
     }
     
-    func snapshotForPlaylist(playlist: SPTPartialPlaylist, completionHandler: @escaping (SPTPlaylistSnapshot?) -> Void) {
+    func initAppleMusicPlaylists(playlist: SPTPartialPlaylist, completionHandler: @escaping (MPMediaPlaylist? ,SPTPlaylistSnapshot?) -> Void) {
         SPTPlaylistSnapshot.playlist(withURI: playlist.uri, accessToken: auth?.session.accessToken, callback: { (error, snapshot) in
             if (error != nil) {
                 print(error!)
             }
             if let snapshot = snapshot as? SPTPlaylistSnapshot {
-                completionHandler(snapshot)
+                let playlistData = MPMediaPlaylistCreationMetadata.init(name: (snapshot.name)!)
+                // if getPlaylist(with:creationMetadata:completionHandler:) can't find a playlist with the given UUID, it creates a new one
+                MPMediaLibrary.default().getPlaylist(with: UUID(), creationMetadata: playlistData, completionHandler: {(playlist, error) in
+                    if (error != nil) {
+                        print(error!)
+                    } else {
+//                        print("Successfully initialized playlist " + (playlist?.name)!)
+                    }
+                    completionHandler(playlist, snapshot)
+                })
             }
         })
     }
-
-    func findAppleMusicTrackIdForSpotifyTrack(track: SPTPlaylistTrack, completionHandler: @escaping (String?) -> Void) {
-        // bleh, compiler can't tell these are all arrays unless stored as local vars
-        let trackTerms = track.name.components(separatedBy: " ")
-        let artistTerms = track.artists.map { ($0 as! SPTPartialArtist).name.components(separatedBy: " ") }.joined()
-        let albumTerms = track.album.name.components(separatedBy: " ")
-        let queryTerms = trackTerms + artistTerms + albumTerms
-        let explicit = track.flaggedExplicit ? "Yes" : "No"
-
-        // Can I make a dictionary with the different attributes?
-        let urlString = "https://itunes.apple.com/search?term=" + queryTerms.joined(separator: "+") + "&media=music&entity=song&explicit=" + explicit + "&limit=1"
-        print(urlString)
-        let url = NSURL(string: urlString)
-        if (url != nil) {
-            let request = URLRequest.init(url: url! as URL)
+    
+    func trackForTrack(spotifyTrack: SPTPlaylistTrack, completionHandler: @escaping (String?) -> Void) {
+        let URL = makeRequestURL(track: spotifyTrack)
+        if (URL != nil) {
+            let request = URLRequest.init(url: URL! as URL)
             // using a shared session ensures we aren't creating a new session for each request
             let session = URLSession.shared
             
@@ -101,6 +88,10 @@ class ViewController: UIViewController {
                                 if let trackId = results[0]["trackId"] as? NSNumber {
                                     completionHandler(trackId.stringValue)
                                 }
+                            } else {
+                                let artists = spotifyTrack.artists.map { ($0 as! SPTPartialArtist).name }.joined(separator: " & ")
+                                print("Couldn't find " + spotifyTrack.name + " by " + artists + " on Apple Music")
+                                print(URL?.absoluteString! as Any)
                             }
                         }
                     } else {
@@ -124,6 +115,25 @@ class ViewController: UIViewController {
                     task.resume()
                 }
             }
+        }
+    }
+    
+    func makeRequestURL(track: SPTPlaylistTrack) -> NSURL? {
+        // bleh, compiler can't tell these are all arrays unless stored as local vars
+        let trackTerms = track.name.components(separatedBy: " ")
+        let artistTerms = track.artists.map { ($0 as! SPTPartialArtist).name.components(separatedBy: " ") }.joined()
+        let albumTerms = track.album.name.components(separatedBy: " ")
+        let queryTerms = trackTerms + artistTerms + albumTerms
+        let explicit = track.flaggedExplicit ? "Yes" : "No"
+        
+        // Can I make a dictionary with the different attributes?
+        let urlString = "https://itunes.apple.com/search?term=" + queryTerms.joined(separator: "+") + "&media=music&entity=song&explicit=" + explicit + "&limit=1"
+        let url = NSURL(string: urlString)
+        if (url != nil) {
+            return url
+        } else {
+            print(urlString)
+            return nil
         }
     }
 }

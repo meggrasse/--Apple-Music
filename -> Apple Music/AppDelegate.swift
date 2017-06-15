@@ -94,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print (error!)
             }
             
-            self.VC?.createAppleMusicPlaylistForSpotifyPlaylistList(playlistList: playlistlist as! SPTPlaylistList)
+            self.VC?.createAppleMusicPlaylistsFromSpotify(playlistList: playlistlist as! SPTPlaylistList)
         })
     }
 
