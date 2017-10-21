@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     var auth: SPTAuth?
-    var VC: ViewController?
+    var navigationController: UINavigationController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -26,10 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.auth?.requestedScopes = [SPTAuthPlaylistReadPrivateScope, SPTAuthPlaylistReadCollaborativeScope, SPTAuthUserLibraryReadScope]
         
         //Init VC
-        self.VC = ViewController.init(nibName: nil, bundle: nil)
-        
+        let VC = ViewController.init(nibName: nil, bundle: nil)
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = self.VC
+        
+        self.navigationController = UINavigationController(rootViewController: VC)
+        self.window?.rootViewController = self.navigationController
+        
         self.window?.backgroundColor = UIColor.white
         self.window?.makeKeyAndVisible()
         
@@ -94,7 +96,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print (error!)
             }
             
-            self.VC?.createAppleMusicPlaylistsFromSpotify(playlistList: playlistlist as! SPTPlaylistList)
+            let playlistTableVC = PlaylistTableViewController(playlistList: playlistlist as! SPTPlaylistList)
+            self.navigationController?.pushViewController(playlistTableVC, animated: false)            
         })
     }
 

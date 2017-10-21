@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		940EC7031F99103800EF66C1 /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940EC7021F99103800EF66C1 /* PlaylistTableViewController.swift */; };
 		9434871A1E2C8EDB00700D5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943487191E2C8EDB00700D5F /* AppDelegate.swift */; };
 		943487211E2C8EDB00700D5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 943487201E2C8EDB00700D5F /* Assets.xcassets */; };
 		9448629A1E2D687000B817A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944862991E2D687000B817A0 /* ViewController.swift */; };
 		944E921A1E2D4ADE009B7ABE /* SpotifyMetadata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 944E92191E2D4ADE009B7ABE /* SpotifyMetadata.framework */; };
 		94A5DC1B1EF22F1500AA2F87 /* ___Apple_MusicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A5DC1A1EF22F1500AA2F87 /* ___Apple_MusicTests.swift */; };
-		94A5DC251EF23FF700AA2F87 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A5DC241EF23FF700AA2F87 /* Default-568h@2x.png */; };
 		94A92B6E1E2CA8D60065FAFD /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A92B6D1E2CA8D60065FAFD /* SpotifyAuthentication.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,17 +27,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		940EC7011F99054100EF66C1 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		940EC7021F99103800EF66C1 /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
 		943487161E2C8EDB00700D5F /* -> Apple Music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "-> Apple Music.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		943487191E2C8EDB00700D5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		943487201E2C8EDB00700D5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		943487251E2C8EDB00700D5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		944862991E2D687000B817A0 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		944E92161E2D4808009B7ABE /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		944E92191E2D4ADE009B7ABE /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyMetadata.framework; sourceTree = "<group>"; };
 		94A5DC181EF22F1500AA2F87 /* -> Apple MusicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "-> Apple MusicTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A5DC1A1EF22F1500AA2F87 /* ___Apple_MusicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "___Apple_MusicTests.swift"; sourceTree = "<group>"; };
 		94A5DC1C1EF22F1500AA2F87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		94A5DC241EF23FF700AA2F87 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		94A92B6C1E2CA8B80065FAFD /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		94A92B6D1E2CA8D60065FAFD /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAuthentication.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,8 +65,7 @@
 		9434870D1E2C8EDA00700D5F = {
 			isa = PBXGroup;
 			children = (
-				94A5DC241EF23FF700AA2F87 /* Default-568h@2x.png */,
-				944E92161E2D4808009B7ABE /* Config.h */,
+				940EC7011F99054100EF66C1 /* Config.h */,
 				943487181E2C8EDB00700D5F /* -> Apple Music */,
 				94A5DC191EF22F1500AA2F87 /* -> Apple MusicTests */,
 				943487171E2C8EDB00700D5F /* Products */,
@@ -89,6 +88,7 @@
 			children = (
 				943487191E2C8EDB00700D5F /* AppDelegate.swift */,
 				944862991E2D687000B817A0 /* ViewController.swift */,
+				940EC7021F99103800EF66C1 /* PlaylistTableViewController.swift */,
 				943487201E2C8EDB00700D5F /* Assets.xcassets */,
 				943487251E2C8EDB00700D5F /* Info.plist */,
 				94A92B6C1E2CA8B80065FAFD /* Bridging-Header.h */,
@@ -191,7 +191,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				943487211E2C8EDB00700D5F /* Assets.xcassets in Resources */,
-				94A5DC251EF23FF700AA2F87 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9448629A1E2D687000B817A0 /* ViewController.swift in Sources */,
+				940EC7031F99103800EF66C1 /* PlaylistTableViewController.swift in Sources */,
 				9434871A1E2C8EDB00700D5F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,6 +328,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = QR3YW3B828;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
@@ -339,7 +340,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.meggrasse.Upgrade;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Meg/code/ios/Upgrade/-> Apple Music/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/meg/projects/Upgrade/-> Apple Music/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -348,6 +349,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = QR3YW3B828;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
@@ -359,7 +361,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.meggrasse.Upgrade;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Meg/code/ios/Upgrade/-> Apple Music/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/meg/projects/Upgrade/-> Apple Music/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
