@@ -66,3 +66,5 @@ fastlane/test_output
 
 # Envr Variables
 Config.h
+
+.DS_Store
